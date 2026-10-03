@@ -38,3 +38,16 @@ nav{overflow:auto;height:100vh;position:sticky;top:0}nav small{margin:0 0 10px 1
 .cal{display:grid;grid-template-columns:repeat(7,minmax(130px,1fr));gap:8px;overflow:auto}
 .day{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;min-height:160px;font-size:13px}.day small{display:block;color:var(--mut);margin-bottom:8px}
 .ev{background:#e9f0f7;border-left:3px solid var(--pri);padding:6px 8px;border-radius:6px;margin-bottom:6px}.ev small{margin:0}
+
+.menu{display:none}
+@media(max-width:800px){
+#app{display:block}
+nav{position:fixed;left:0;top:0;bottom:0;width:240px;z-index:20;height:100vh;flex-direction:column;flex-wrap:nowrap;transform:translateX(-105%);transition:transform .2s;box-shadow:2px 0 12px rgba(90,120,160,.2)}
+nav h2{display:block}body.nav-open nav{transform:none}
+.menu{display:block;position:fixed;top:10px;left:10px;z-index:10;padding:8px 14px}
+main{padding:62px 14px 24px}.bar{flex-wrap:wrap}.bar h2{flex:1 1 100%}.bar input{width:100%;order:3}
+table{display:block;overflow-x:auto;white-space:nowrap}
+#modal .box,#modal .wide{width:94vw}
+.line{flex-wrap:wrap}.line select,.line .idg{flex:1 1 100%}
+.cal{grid-template-columns:repeat(7,150px)}.prof{gap:10px 20px}
+}

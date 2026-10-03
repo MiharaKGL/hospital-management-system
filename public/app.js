@@ -39,7 +39,7 @@ function acts(x) {
 }
 const tbl = (m, r, a) => `<table><tr>${cols(m).map(f => `<th>${f[1]}</th>`).join('')}${a ? '<th></th>' : ''}</tr>${r.map(x => `<tr>${cols(m).map(f => `<td>${cell(f, x)}</td>`).join('')}${a ? `<td>${acts(x)}</td>` : ''}</tr>`).join('')}</table>`;
 async function view(v) {
-  prof = null;
+  prof = null; document.body.classList.remove('nav-open');
   document.querySelectorAll('nav a[data-v]').forEach(a => a.classList.toggle('on', a.dataset.v === v));
   if (v === 'dashboard') {
     const s = await api('stats');
@@ -130,4 +130,5 @@ async function calendar(off = 0, doc = '') {
   <div class="cal">${days.map((d, i) => { const k = d.toLocaleDateString('en-CA'), hrs = sc.filter(z => z.doctor_id == doc && z.day_of_week === nm[i]).map(z => z.start_time.slice(0, 5) + '–' + z.end_time.slice(0, 5)).join(', '), list = ap.filter(z => z.doctor_id == doc && z.appt_date === k && z.status !== 'Cancelled').sort((p, q) => p.appt_time.localeCompare(q.appt_time));
     return `<div class="day"><b>${nm[i].slice(0, 3)} ${k.slice(5)}</b><small>${hrs || 'Not scheduled'}</small>${list.map(z => `<div class="ev">${z.appt_time.slice(0, 5)} · ${E(z.patient_id_label)}<br><small>${E(z.status)}</small></div>`).join('')}</div>`; }).join('')}</div>`;
 }
+document.addEventListener('click', e => { if (!e.target.closest('nav,.menu')) document.body.classList.remove('nav-open'); });
 start();
