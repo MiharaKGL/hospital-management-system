@@ -1,0 +1,40 @@
+:root{--bg:#f3f6fa;--side:#dfe9f4;--pri:#7a9cc6;--pri-d:#5f84b0;--txt:#33475b;--mut:#7b8da1;--line:#d8e2ee}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--txt)}
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.box{background:#fff;padding:32px;border-radius:12px;width:360px;max-width:92vw;box-shadow:0 4px 18px rgba(90,120,160,.12)}
+.box h1{font-size:20px;margin:0 0 4px}.box p{margin:0 0 18px;color:var(--mut)}
+input,select{width:100%;padding:10px;margin:6px 0 12px;border:1px solid var(--line);border-radius:8px;background:#fbfdff;color:var(--txt);font-size:14px}
+button{background:var(--pri);color:#fff;border:0;padding:10px 18px;border-radius:8px;cursor:pointer;font-size:14px}
+button:hover{background:var(--pri-d)}.ghost{background:#e6edf5;color:var(--txt)}.ghost:hover{background:var(--line)}
+#err{display:block;color:#b5616b;margin-top:10px}
+#app{display:flex;min-height:100vh}
+nav{width:210px;background:var(--side);padding:20px 12px;display:flex;flex-direction:column;gap:4px}
+nav h2{margin:0 0 16px 10px;color:var(--pri-d)}
+nav a{padding:10px 12px;border-radius:8px;cursor:pointer}nav a:hover{background:#eaf1f8}
+nav a.on{background:#fff;color:var(--pri-d);font-weight:600}nav .out{margin-top:auto;color:var(--mut)}
+main{flex:1;padding:28px;overflow:auto}h2{margin:0}
+.bar{display:flex;gap:12px;align-items:center;margin-bottom:18px}.bar h2{flex:1}.bar input{width:240px;margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:20px}
+.card{background:#fff;padding:20px;border-radius:12px;border:1px solid var(--line)}
+.card span{color:var(--mut);font-size:13px}.card b{display:block;font-size:28px;margin-top:8px;color:var(--pri-d)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+th{background:#e9f0f7;text-align:left;font-size:12px;text-transform:uppercase;color:var(--mut)}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px}
+td a{color:var(--pri-d);cursor:pointer;margin-right:10px}
+#modal{display:none;position:fixed;inset:0;background:rgba(51,71,91,.35);align-items:center;justify-content:center}
+#modal.open{display:flex}#modal .box{width:420px}
+label{font-size:13px;color:var(--mut)}.act{display:flex;justify-content:flex-end;gap:10px}
+@media(max-width:700px){#app{flex-direction:column}nav{width:100%;flex-direction:row;flex-wrap:wrap}nav h2{display:none}}
+textarea{width:100%;padding:10px;margin:6px 0 12px;border:1px solid var(--line);border-radius:8px;background:#fbfdff;color:var(--txt);font:14px 'Segoe UI',Arial;min-height:60px}
+nav{overflow:auto;height:100vh;position:sticky;top:0}nav small{margin:0 0 10px 10px;color:var(--mut)}
+.grp{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);margin:14px 0 4px 12px}
+#modal .wide{width:820px;max-height:85vh;overflow:auto}h4{margin:16px 0 8px;color:var(--pri-d)}
+@media print{nav,.bar button,.bar select{display:none}}
+.prof{display:flex;gap:26px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:18px;font-size:14px;color:var(--mut)}.prof b{color:var(--txt)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.tabs a{padding:8px 14px;border-radius:8px;background:#e9f0f7;cursor:pointer;font-size:14px}.tabs a.on{background:var(--pri);color:#fff}
+.line{display:flex;gap:8px;align-items:center}.line select{flex:2}.line input{margin:6px 0}.line .iq{width:70px;flex:none}.line .idg{flex:2}.line a{cursor:pointer;color:#b5616b}
+#modal .box{max-height:90vh;overflow:auto}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(130px,1fr));gap:8px;overflow:auto}
+.day{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;min-height:160px;font-size:13px}.day small{display:block;color:var(--mut);margin-bottom:8px}
+.ev{background:#e9f0f7;border-left:3px solid var(--pri);padding:6px 8px;border-radius:6px;margin-bottom:6px}.ev small{margin:0}
