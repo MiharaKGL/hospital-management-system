@@ -1,8 +1,8 @@
 require('dotenv').config();
-const express = require('express'), path = require('path'), bcrypt = require('bcrypt'), jwt = require('jsonwebtoken');
+const express = require('express'), path = require('path'), bcrypt = require('bcryptjs'), jwt = require('jsonwebtoken');
 const { Pool, types } = require('pg');
 types.setTypeParser(1082, v => v);
-const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false }, max: 10 });
+const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false }, max: process.env.VERCEL ? 2 : 10, idleTimeoutMillis: 10000 });
 const q = (s, p) => pool.query(s, p).then(r => r.rows);
 const app = express();
 app.use(express.json({ limit: '10mb' }));
@@ -142,7 +142,7 @@ app.post('/api/restore', auth, adm, w(async (req, res) => {
     await c.query('commit'); log('system', 'RESTORE', req.user.username); res.json({ ok: true });
   } catch (e) { await c.query('rollback'); throw e; } finally { c.release(); }
 }));
-setInterval(async () => { const [b] = await q("select 1 from backups where created_at>now()-interval '24 hours'"); if (!b) saveSnap().catch(console.error); }, 3600e3);
+if (!process.env.VERCEL) setInterval(async () => { const [b] = await q("select 1 from backups where created_at>now()-interval '24 hours'"); if (!b) saveSnap().catch(console.error); }, 3600e3);
 
 (async () => {
   if (!(await q('select 1 from users limit 1')).length) {
@@ -150,4 +150,5 @@ setInterval(async () => { const [b] = await q("select 1 from backups where creat
     console.log('Admin user created');
   }
 })().catch(e => console.error('Startup error:', e.message));
-app.listen(process.env.PORT || 3000, () => console.log('HMS running'));
+if (require.main === module) app.listen(process.env.PORT || 3000, () => console.log('HMS running'));
+module.exports = app;
